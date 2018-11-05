@@ -64,6 +64,8 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(listDto);			
 	}
 	
+
+	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
 	public  ResponseEntity<Page<ClienteDTO>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
