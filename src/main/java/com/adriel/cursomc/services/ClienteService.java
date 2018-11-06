@@ -16,7 +16,6 @@ import com.adriel.cursomc.domain.Endereco;
 import com.adriel.cursomc.domain.enums.TipoCliente;
 import com.adriel.cursomc.dto.ClienteDTO;
 import com.adriel.cursomc.dto.ClienteNewDTO;
-import com.adriel.cursomc.repositories.CidadeRepository;
 import com.adriel.cursomc.repositories.ClienteRepository;
 import com.adriel.cursomc.repositories.EnderecoRepository;
 import com.adriel.cursomc.services.exceptions.DataIntegrityException;
@@ -27,9 +26,6 @@ public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repo;
-	
-	@Autowired
-	private CidadeRepository cidadeRepository;
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
@@ -68,7 +64,7 @@ public class ClienteService {
 	}
 	
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
-		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy); 
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy); 
 		return repo.findAll(pageRequest);
 	}
 	
